@@ -6,7 +6,7 @@ python에 tensorflow를 import
 
 터미널에서 할 때 다음과 같은 에러가 발생
 
-
+![Alt text](https://github.com/sjeongchoi/tensorflow-learning/blob/master/1.png?raw=true)
 
 이거는 그냥 cpu가 몇개인지 정의 안되었다는거라서 무시하고 하면 됨
 위의 can't 어쩌고 하는 메시지는 CPU 코어 갯수를 정할 수 없어서 4개로 가정한다는 의미이므로 예제를 실행하는데는 무리가 없다.
