@@ -8,18 +8,18 @@ python에 tensorflow를 import
 
 ![Alt text](https://github.com/sjeongchoi/tensorflow-learning/blob/master/1.png?raw=true)
 
-이거는 그냥 cpu가 몇개인지 정의 안되었다는거라서 무시하고 하면 됨
+이거는 그냥 cpu 코어 개수를 정할 수 없어 4개로 가정한다고 한다는 말이라서 무시하고 하면 된다고 함.
+
 위의 can't 어쩌고 하는 메시지는 CPU 코어 갯수를 정할 수 없어서 4개로 가정한다는 의미이므로 예제를 실행하는데는 무리가 없다.
 실제 기계학습(Machine Learning) 을 진행할 때에는 장비의 CPU 스펙을 고려하여 조정하면 되겠다.
-
-
 출처: http://migom.tistory.com/16 [devlog.gitlab.io]
+
 
 텐서 플로우는 모든 것이 오퍼레이션 
 상수 자체가 오퍼레이터가 됨
 노드를 시작하는 것은 run으로 시작
 
-
+"'
 >>> import tensorflow as tf
 >>> hello = tf.constant('Hello, TensorFlow!')
 >>> sess = tf.Session()
@@ -29,7 +29,7 @@ can't determine number of CPU cores: assuming 4
 I tensorflow/core/common_runtime/local_session.cc:45] Local session inter op parallelism threads: 4
 >>> print(sess.run(hello))
 Hello, TensorFlow!
-
+'"
 
 
 
