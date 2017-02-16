@@ -19,7 +19,7 @@ python에 tensorflow를 import
 상수 자체가 오퍼레이터가 됨
 노드를 시작하는 것은 run으로 시작
 
-"'
+<pre><code>
 >>> import tensorflow as tf
 >>> hello = tf.constant('Hello, TensorFlow!')
 >>> sess = tf.Session()
@@ -29,7 +29,7 @@ can't determine number of CPU cores: assuming 4
 I tensorflow/core/common_runtime/local_session.cc:45] Local session inter op parallelism threads: 4
 >>> print(sess.run(hello))
 Hello, TensorFlow!
-'"
+</code></pre>
 
 
 
