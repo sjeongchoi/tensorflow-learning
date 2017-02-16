@@ -31,8 +31,7 @@ I tensorflow/core/common_runtime/local_session.cc:45] Local session inter op par
 Hello, TensorFlow!
 </code></pre>
 
-
-
+<pre><code>
 >>> a = tf.constant(2)
 >>> b = tf.constant(3)
 >>> c = a + b
@@ -40,13 +39,13 @@ Hello, TensorFlow!
 Tensor("add:0", shape=TensorShape([]), dtype=int32)
 >>> print sess.run(c)
 5
+</code></pre>
 
 단순히 더해서 프린트 한거에서는 노드의 형태만 가지고 있는것 실제 실행은 안되어있음
 
 세션 run을 실행시켜야 원하는 결과를 볼 수 있음
 
-
-
+<pre><code>
 >>> with tf.Session() as sess:
 ...      print "a = 2 b = 3"
 ...      print "Addition with constants : %i" % sess.run(a+b)
@@ -55,14 +54,12 @@ Tensor("add:0", shape=TensorShape([]), dtype=int32)
 a = 2 b = 3
 Addition with constants : 5
 Multiplication with constants: 6
+</code></pre>
 
-
-
-플레이스 홀더 : 함수 같은 것을 사용할 때 파라미터를 줌..
-텐서 플로우에서는 타입만 정의해주면 함수에 전해주는 파라미터를 만들 수 있음
+플레이스 홀더 : 텐서 플로우에서는 타입만 정의해주면 함수에 전해주는 파라미터를 만들 수 있음
 모델이 함수는 아니지만 실행 시점에서 값들을 넣을 수 있게 해주는 기능.
 
-
+<pre><code>
 >>> a = tf.placeholder(tf.int16)
 >>> b = tf.placeholder(tf.int16)
 >>> add = tf.add(a, b)
@@ -73,17 +70,21 @@ Multiplication with constants: 6
 ... 
 Addition with variables : 5
 Multiplication with variables : 8
+</code></pre>
 
-
-linear regression
+<hr/>
+# linear regression
+<hr/>
 
 여러 데이터를 가지고 학습을 시킴 : training
+
 학습을 통하여 모델을 생성 -> 학습이 완료
+
 regression은 학습된 모델을 기반으로 값을 예측하여 알려줌..
 이를 linear regresion이라 함
 
-
 레그레이션 모델을 학습다는 것은 가설을 세운다는 전제..
+
 리이너한 모델이 우리 데이터에 맞을 것이다
 세상에 있는 많은 현상들이 linear한 경우로 많이 나옴~
 데이터가 있다면 그에맞는 linear한 선을 찾는다는 것이 학습을 한다는 것
@@ -96,4 +97,3 @@ H(x) -> 가설
 
 더 좋은 가설을 알 수 있는 방법 : 실제 데이터와 가설이 나타내는 예측 값과의 차이를 계산 => cost(loss) function
 가설과 실제 데이터의 차이를 계산 (H(x) - y)^2 차이가 클 때 더욱 패널티를 줄 수 있음~
-cost = 
