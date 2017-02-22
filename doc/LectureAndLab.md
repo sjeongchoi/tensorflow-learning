@@ -203,25 +203,18 @@ x_data = [1., 2., 3.]
 y_data = [1., 2., 3.]
 
 W = tf.Variable(tf.random_uniform([1], -10.0, 10.0))
-#m = n_samples = len(X)
-#W = tf.placeholder(tf.float32)
 
 X = tf.placeholder(tf.float32);
 Y = tf.placeholder(tf.float32);
 
-#hypothesis = tf.mul(X, W)
 hypothesis = W * X
 
-#cost = tf.reduce_sum(tf.pow(hypothesis - Y, 2))/(m)
 cost = tf.reduce_mean(tf.square(hypothesis - Y))
 
 descent = W - tf.mul(0.1, tf.reduce_mean(tf.mul((tf.mul(W, X) - Y), X)))
 update = W.assign(descent)
 
 init = tf.initialize_all_variables()
-
-#W_val = []
-#cost_val = []
 
 sess = tf.Session()
 sess.run(init)
@@ -373,4 +366,4 @@ for step in xrange(2001):
 
 
 데이터가 많아지고 종류가 많아지면 소스에 하드코딩으로 박아 넣기 어려움 >  파일 형태로 읽는 것은 어떨까?
->> numpy를 사용하여 txt파일을 loadtxt 해 줄 
+> numpy를 사용하여 txt파일을 loadtxt 할 수 있음
