@@ -97,3 +97,273 @@ H(x) -> 가설
 
 더 좋은 가설을 알 수 있는 방법 : 실제 데이터와 가설이 나타내는 예측 값과의 차이를 계산 => cost(loss) function
 가설과 실제 데이터의 차이를 계산 (H(x) - y)^2 차이가 클 때 더욱 패널티를 줄 수 있음~
+
+<hr />
+# LAB2
+<hr />
+
+먼저 트레이닝 데이터부터 정의
+W와 b의 값을 텐서 플로우에서 지정하는 variable로 지정 -> 나중에 이 모델이 업데이트를 할 수 있기 때문에 variable로 지정해야함
+tensorflow가 잘 찾을 수 있는지 랜덤한 값을 생성
+
+cost는 h - y값을 뺀 값을 square를 한 다음 평균을 구함
+minimize는 blackbox..cost를 작게하여 minimize함
+
+변수를 초기화 후 실행시켜 주어야함 > 초기화 안하면 에러 메시지 나옴
+minimize는 for 문으로 2000번 돌면서…
+계속 실행 시켜줌
+
+<pre><code>
+>>> import tensorflow as tf
+>>> x_data = [1, 2, 3]
+>>> y_data = [1, 2, 3]
+>>> W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+>>> b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+>>> hypothesis = W * x_data + b
+>>> cost = tf.reduce_mean(tf.square(hypothesis - y_data))
+>>> a = tf.Variable(0.1)
+>>> optimizer = tf.train.GradientDescentOptimizer(a)
+>>> train = optimizer.minimize(cost)
+>>> init = tf.initialize_all_variables()
+>>> sess = tf.Session()
+can't determine number of CPU cores: assuming 4
+I tensorflow/core/common_runtime/local_device.cc:25] Local device intra op parallelism threads: 4
+can't determine number of CPU cores: assuming 4
+I tensorflow/core/common_runtime/local_session.cc:45] Local session inter op parallelism threads: 4
+>>> sess.run(init)
+>>> for step in xrange(2001):
+...   sess.run(train)
+...   if step % 20 == 0:
+...     print step, sess.run(cost), sess.run(W), sess.run(b)
+... 
+</code></pre>
+
+0 0.394947 [ 0.58223546] [ 1.36335051]
+
+20 0.091077 [ 0.64948994] [ 0.79679173]
+
+40 0.0344114 [ 0.78454977] [ 0.48976901]
+
+60 0.0130016 [ 0.86756784] [ 0.30104935]
+
+80 0.00491234 [ 0.9185971] [ 0.18504788]
+
+...
+
+660 4.73695e-15 [ 0.99999994] [  1.48965142e-07]
+
+680 0.0 [ 1.] [  5.35976952e-08]
+
+700 0.0 [ 1.] [  5.35976952e-08]
+
+...
+
+2000 0.0 [ 1.] [  5.35976952e-08]
+
+
+각 스탭마다의 cost와 W, b값을 출력
+cost가 0 가까이 가게 됨
+
+
+place holder : 처음에 값을 넣어주는게 아니라 place holder 를 선언한 다음 그것을 모델에 사용하고, operation에 사용한 다음 실제로 실행할 때 > run이라는 명령을 할 떄  변수들을 입력
+placeholder의 이점 : *****가지고 있는 모델의 재활용 가능*****
+
+<pre><code>
+>>> x_data = [1., 2., 3.]
+>>> y_data = [1., 2., 3.]
+>>> W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+>>> b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+>>> X = tf.placeholder(tf.float32)
+>>> Y = tf.placeholder(tf.float32)
+>>> hypothesis = W * X + b
+>>> cost = tf.reduce_mean(tf.square(hypothesis - Y))
+>>> a = tf.Variable(0.1)
+>>> optimizer = tf.train.GradientDescentOptimizer(a)
+>>> train = optimizer.minimize(cost)
+>>> init = tf.initialize_all_variables()
+>>> sess = tf.Session()
+>>> sess.run(init)
+>>> for step in xrange(2001):
+...   sess.run(train, feed_dict={X:x_data, Y:y_data})               ...   if step % 20 == 0:
+...     print step, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W), sess.run(b)
+... 
+
+>>> print sess.run(hypothesis, feed_dict={X:5})
+[ 5.00000143]
+>>> print sess.run(hypothesis, feed_dict={X:2.5})
+[ 2.50000024]
+</code></pre>
+
+<hr />
+# lab3 minimizing cost
+<hr />
+
+import tensorflow as tf
+x_data = [1., 2., 3.]
+y_data = [1., 2., 3.]
+
+W = tf.Variable(tf.random_uniform([1], -10.0, 10.0))
+
+X = tf.placeholder(tf.float32);
+Y = tf.placeholder(tf.float32);
+
+hypothesis = W * X
+
+cost = tf.reduce_mean(tf.square(hypothesis - Y))
+
+descent = W - tf.mul(0.1, tf.reduce_mean(tf.mul((tf.mul(W, X) - Y), X)))
+update = W.assign(descent)
+
+init = tf.initialize_all_variables()
+
+sess = tf.Session()
+sess.run(init)
+
+for step in xrange(20):
+  sess.run(update, feed_dict={X:x_data, Y:y_data})
+  print step, sess.run(cost, feed_dict={X:x_data, Y:y_data}), sess.run(W)
+</code></pre>
+
+0 0.219411 [ 1.21683347]
+
+1 0.0624105 [ 1.11564457]
+
+...
+
+18 3.20976e-11 [ 1.00000262]
+
+19 9.54969e-12 [ 1.00000143]
+
+<hr />
+# lab 4 multi-variable linear regression
+<hr />
+
+가설에 변수가 2개가 들어오게 됨
+>> 각각에 대해 학습할 weight가 2개가 됨
+tensorflow에서도 w가 각각 학습되어야함
+
+변수가 늘어남에 따라 같은 방식으로 확장할 수 있음
+
+<pre><code>
+import tensorflow as tf
+x1_data = [1, 0, 3, 0, 5]
+x2_data = [0, 2, 0, 4, 0]
+y_data = [1, 2, 3, 4, 5]
+
+W1 = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+W2 = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+
+b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+
+hypothesis = W1 * x1_data + W2 * x2_data + b
+
+cost = tf.reduce_mean(tf.square(hypothesis - y_data))
+
+a = tf.Variable(0.1)
+optimizer = tf.train.GradientDescentOptimizer(a)
+train = optimizer.minimize(cost)
+
+init = tf.initialize_all_variables()
+
+sess = tf.Session()
+sess.run(init)
+
+for step in xrange(2001):
+  sess.run(train)
+  if step % 20 == 0:
+    print step, sess.run(cost), sess.run(W1), sess.run(W2), sess.run(b)
+
+</code></pre>
+
+
+0 0.480649 [ 0.93938279] [ 0.61236995] [ 1.00284827]
+
+20 0.0491891 [ 0.86178893] [ 0.83601344] [ 0.5257743]
+
+...
+
+500 2.55795e-14 [ 0.99999988] [ 0.99999994] [  2.41646831e-07]
+
+520 2.27374e-14 [ 1.] [ 0.99999994] [  1.98731541e-07]
+
+...
+
+1980 1.42109e-14 [ 1.] [ 0.99999994] [  1.74889706e-07]
+
+2000 1.42109e-14 [ 1.] [ 0.99999994] [  1.74889706e-07]
+
+# matrix
+
+복잡한 수식을 행렬을 통해 간단하게 바꿀 수 있음
+행렬로 바꾸는거 역시 간단한
+x, W가 차원이 생김 > 2차원 배열로 됨
+행렬 곱셈을 해야함 > 각각의 앨리먼트 곱해서 더해나가야함 (tensorflow의 matmul)
+
+0 1.74255 [[ 0.72554004  1.15851843]] [ 1.16975248]
+
+20 0.0557844 [[ 0.82536542  0.85281485]] [ 0.55991417]
+
+40 0.0161519 [[ 0.90603071  0.92080081]] [ 0.30128455]
+
+...
+
+1980 4.83169e-14 [[ 0.99999994  0.99999994]] [  1.63099003e-07]
+
+2000 4.83169e-14 [[ 0.99999994  0.99999994]] [  1.63099003e-07]
+
+
+b값을 없애서 더 간단하게 수식으로 표현 가능
+전체 데이터에 1을 추가함
+
+<pre><code>
+
+import tensorflow as tf
+x_data = [[1, 1, 1, 1, 1],
+          [0., 2., 0., 4., 0.],
+          [1., 0., 3., 0., 5.]]
+y_data = [1, 2, 3, 4, 5]
+
+W = tf.Variable(tf.random_uniform([1,3], -1.0, 1.0))
+
+hypothesis = tf.matmul(W, x_data)
+
+cost = tf.reduce_mean(tf.square(hypothesis - y_data))
+
+a = tf.Variable(0.1)
+optimizer = tf.train.GradientDescentOptimizer(a)
+train = optimizer.minimize(cost)
+
+init = tf.initialize_all_variables()
+
+sess = tf.Session()
+sess.run(init)
+
+for step in xrange(2001):
+  sess.run(train)
+  if step % 20 == 0:
+    print step, sess.run(cost), sess.run(W)
+</code></pre>
+
+0 0.162583 [[ 0.3971453   0.8274079   1.03055084]]
+
+20 0.0074302 [[ 0.20434552  0.93626559  0.94628346]]
+
+...
+
+200 1.06256e-07 [[  7.72808155e-04   9.99758959e-01   9.99796808e-01]]
+
+220 3.07795e-08 [[  4.15828748e-04   9.99870300e-01   9.99890625e-01]]
+
+...
+
+480 2.27374e-14 [[  2.22217537e-07   9.99999940e-01   1.00000000e+00]]
+
+500 1.42109e-14 [[  1.74533866e-07   9.99999940e-01   1.00000000e+00]]
+
+...
+
+2000 1.42109e-14 [[  1.74533866e-07   9.99999940e-01   1.00000000e+00]]
+
+
+데이터가 많아지고 종류가 많아지면 소스에 하드코딩으로 박아 넣기 어려움 >  파일 형태로 읽는 것은 어떨까?
+> numpy를 사용하여 txt파일을 loadtxt 할 수 있음
