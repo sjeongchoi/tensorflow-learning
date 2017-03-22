@@ -15,7 +15,7 @@ hypothesis = W * X
 #cost = tf.reduce_sum(tf.pow(hypothesis - Y, 2))/(m)
 cost = tf.reduce_mean(tf.square(hypothesis - Y))
 
-descent = W - tf.mul(0.1, tf.reduce_mean(tf.mul((tf.mul(W, X) - Y), X)))
+descent = W - tf.multiply(0.1, tf.reduce_mean(tf.multiply((tf.multiply(W, X) - Y), X)))
 update = W.assign(descent)
 
 init = tf.initialize_all_variables()
