@@ -625,3 +625,1255 @@ gradientdescent후 minimize~
 Process finished with exit code 0
 
 
+이번 실습에서 중요한 것은 data set을 training과 test로 나누는 것
+반드시 데이터를 나누어야함
+트레이닝 셋은 학습에만 사용 -> 모델에 학습시킴
+테스트 셋의 경우, 모델의 입장에서는 한 번도 본 적이 없는 데이터로 학습시킨 모델을 평가하는데 사용
+
+어떻게 나눌 것인가…
+
+placeholder의 유용함이 여기에서 나옴
+optimizer에는 트레이닝 데이터를 사용하고
+prediction에는 테스트 데이터를 사용
+
+Learning rate : NaN
+Learning rate 이 너무 클 경우 밖으로 튕겨나감, 수렴이 되지 않고 발산이 됨
+Learning rate 이 너무 작을 경우에는 학습이 굉장히 느리게 일어남
+local minimun이 있을 경우, 거기에 빠질 수 있음
+
+
+너무 클 경우(1.5)
+
+(0, 5.7320299, array([[-0.30548954,  1.22985029, -0.66033536],
+       [-4.39069986,  2.29670858,  2.99386835],
+       [-3.34510708,  2.09743214, -0.80419564]], dtype=float32))
+(1, 23.149357, array([[ 0.06951046,  0.29449689, -0.0999819 ],
+       [-1.95319986, -1.63627958,  4.48935604],
+       [-0.90760708, -1.65020132,  0.50593793]], dtype=float32))
+(2, 27.279778, array([[ 0.44451016,  0.85699677, -1.03748143],
+       [ 0.48429942,  0.98872018, -0.57314301],
+       [ 1.52989244,  1.16229868, -4.74406147]], dtype=float32))
+(3, 8.6680021, array([[ 0.12396193,  0.61504567, -0.47498202],
+       [ 0.22003263, -0.2470119 ,  0.9268558 ],
+       [ 0.96035379,  0.41933775, -3.43156195]], dtype=float32))
+(4, 5.7711058, array([[-0.9524312 ,  1.13037777,  0.08607888],
+       [-3.78651619,  2.26245379,  2.42393875],
+       [-3.07170963,  3.14037919, -2.12054014]], dtype=float32))
+(5, inf, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(6, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(7, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(8, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(9, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(10, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(11, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(12, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(13, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(14, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(15, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(16, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(17, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(18, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(19, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(20, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(21, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(22, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(23, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(24, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(25, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(26, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(27, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(28, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(29, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(30, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(31, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(32, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(33, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(34, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(35, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(36, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(37, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(38, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(39, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(40, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(41, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(42, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(43, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(44, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(45, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(46, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(47, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(48, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(49, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(50, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(51, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(52, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(53, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(54, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(55, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(56, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(57, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(58, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(59, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(60, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(61, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(62, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(63, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(64, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(65, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(66, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(67, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(68, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(69, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(70, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(71, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(72, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(73, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(74, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(75, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(76, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(77, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(78, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(79, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(80, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(81, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(82, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(83, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(84, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(85, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(86, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(87, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(88, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(89, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(90, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(91, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(92, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(93, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(94, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(95, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(96, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(97, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(98, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(99, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(100, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(101, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(102, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(103, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(104, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(105, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(106, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(107, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(108, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(109, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(110, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(111, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(112, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(113, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(114, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(115, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(116, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(117, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(118, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(119, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(120, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(121, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(122, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(123, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(124, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(125, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(126, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(127, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(128, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(129, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(130, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(131, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(132, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(133, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(134, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(135, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(136, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(137, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(138, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(139, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(140, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(141, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(142, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(143, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(144, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(145, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(146, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(147, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(148, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(149, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(150, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(151, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(152, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(153, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(154, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(155, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(156, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(157, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(158, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(159, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(160, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(161, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(162, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(163, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(164, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(165, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(166, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(167, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(168, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(169, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(170, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(171, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(172, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(173, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(174, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(175, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(176, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(177, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(178, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(179, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(180, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(181, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(182, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(183, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(184, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(185, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(186, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(187, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(188, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(189, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(190, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(191, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(192, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(193, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(194, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(195, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(196, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(197, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(198, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(199, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+(200, nan, array([[ nan,  nan,  nan],
+       [ nan,  nan,  nan],
+       [ nan,  nan,  nan]], dtype=float32))
+('Prediction:', array([0, 0, 0]))
+('Accuracy: ', 0.0)
+
+
+1e-10
+
+(0, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(1, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(2, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(3, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(4, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(5, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(6, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(7, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(8, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(9, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(10, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(11, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(12, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(13, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(14, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(15, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(16, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(17, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(18, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(19, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(20, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(21, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(22, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(23, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(24, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(25, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(26, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(27, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(28, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(29, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(30, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(31, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(32, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(33, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(34, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(35, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(36, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(37, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(38, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(39, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(40, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(41, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(42, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(43, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(44, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(45, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(46, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(47, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(48, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(49, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(50, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(51, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(52, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(53, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(54, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(55, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(56, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(57, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(58, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(59, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(60, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(61, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(62, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(63, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(64, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(65, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(66, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(67, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(68, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(69, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(70, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(71, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(72, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(73, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(74, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(75, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(76, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(77, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(78, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(79, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(80, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(81, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(82, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(83, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(84, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(85, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(86, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(87, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(88, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(89, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(90, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(91, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(92, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(93, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(94, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(95, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(96, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(97, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(98, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(99, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(100, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(101, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(102, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(103, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(104, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(105, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(106, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(107, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(108, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(109, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(110, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(111, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(112, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(113, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(114, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(115, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(116, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(117, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(118, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(119, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(120, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(121, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(122, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(123, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(124, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(125, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(126, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(127, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(128, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(129, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(130, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(131, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(132, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(133, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(134, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(135, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(136, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(137, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(138, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(139, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(140, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(141, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(142, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(143, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(144, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(145, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(146, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(147, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(148, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(149, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(150, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(151, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(152, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(153, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(154, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(155, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(156, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(157, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(158, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(159, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(160, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(161, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(162, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(163, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(164, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(165, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(166, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(167, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(168, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(169, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(170, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(171, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(172, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(173, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(174, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(175, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(176, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(177, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(178, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(179, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(180, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(181, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(182, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(183, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(184, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(185, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(186, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(187, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(188, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(189, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(190, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(191, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(192, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(193, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(194, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(195, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(196, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(197, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(198, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(199, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+(200, 5.7320299, array([[ 0.80269563,  0.67861295, -1.21728313],
+       [-0.3051686 , -0.3032113 ,  1.50825703],
+       [ 0.75722361, -0.7008909 , -2.10820389]], dtype=float32))
+('Prediction:', array([0, 0, 0]))
+('Accuracy: ', 0.0)
+
+학습이 아예 일어나지 않는 경우에는 좀 크게 해줌
+
+non normalized input
+학습 rate를 잘 해주었는데도 nan발생할 경우 - 데이터가 노말라이즈 되지 않았을 수 있음
+min-max scale 사용
+0과 1사이의 값으로 모든 값을 normalize 해줌
+
+의문 >>>>데이터가 들쭉날쭉한거는 어떻게 알 수 있을까?
+
+
+mint
+
+학습할 데이터가 크기 때문에 조금씩 잘라서 배치로 돌림
+
+epoch : 전체 데이터 셋을 한 번 다 학습 시키는 것을 1epoch이라고 함
+데이터가 많을 경우 다 메모리에 올리지 못하기 때문에 특정 개수만큼 자른 것을 batch size라고 함
+
+총 데이터가 1000개 이고 배치 사이즈가 500 일 경우 2 에폭이 됨
